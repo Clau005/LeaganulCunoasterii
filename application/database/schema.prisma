@@ -1,0 +1,35 @@
+datasource database {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["public","access"]
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+generator fabrica {
+  provider     = "prisma-fabbrica"
+  output       = "/generated/factories"
+  nonTranspile = true
+}
+
+model User {
+  id        String @id @default(dbgenerated("gen_random_uuid()")) @database.Uuid
+  email     String
+  firstName String
+  lastName  String
+  metadata  Json?
+
+  @@schema("access")
+}
+
+model Product {
+  id          String @id @default(dbgenerated("gen_random_uuid()")) @database.Uuid
+  price       Int
+  name        String
+  description String
+
+  @@schema("public")
+}
