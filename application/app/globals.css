@@ -3,10 +3,59 @@
 @tailwind utilities;
 
 
-html,
-body,
-:root {
-  height :100%;
-  background-color: black;
-  color-scheme: dark;
+@layer base {
+  html {
+    line-height: 1.618;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Set styles for disabled radio buttons and checkboxes */
+  [type='checkbox']:disabled,
+  [type='radio']:disabled {
+    accent-color: theme('colors.gray.400');
+    color: theme('colors.gray.400');
+  }
+
+  select {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="%23737373" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6 8l4 4 4-4"/></svg>');
+    background-size: theme('spacing.6');
+    background-position: right theme('spacing.3') center;
+    background-repeat: no-repeat;
+    appearance: none;
+    padding-right: theme('padding.12') !important;
+  }
+
+  [dir='rtl'] select {
+    background-position: left theme('spacing.2') center;
+  }
+
+  /* Checkbox */
+  [type='checkbox']:after {
+    content: '';
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2393B68C' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: theme('spacing.6');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* Set styles for invalid select to appear as a placeholder */
+  select:invalid {
+    color: theme('colors.gray.500');
+  }
+
+  /* Remove arrows from number input */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number'] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+  }
+
+  /* Fix for next js */
+  [data-nextjs-scroll-focus-boundary] {
+    display: contents;
+  }
 }

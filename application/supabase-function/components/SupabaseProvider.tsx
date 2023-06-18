@@ -1,7 +1,7 @@
 'use client';
 
+import { SupabaseSchemaType } from '@/providers/SupabaseProvider';
 import { Database } from '@/types/supabase';
-
 import {
   Session,
   SupabaseClient,
@@ -11,7 +11,6 @@ import {
 import { useRouter } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 
-export type SupabaseSchemaType = string & keyof Database;
 export type MaybeSession = Session | null;
 
 type SupabaseClientMap = {
