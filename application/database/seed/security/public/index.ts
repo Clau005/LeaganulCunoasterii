@@ -6,7 +6,7 @@ import { dropAndCreateUpdatePolicy } from "../shared/defaultPolicies/dropAndCrea
 import { enableRowLevelSecurity } from "../shared/enableRLS";
 
 const tables = [
-    'User'
+    'Product'
 ]
 
 

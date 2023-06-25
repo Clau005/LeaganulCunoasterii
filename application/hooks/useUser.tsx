@@ -84,3 +84,8 @@ export const useUser = () => {
   }
   return context;
 };
+
+
+// export const useSessionUser = async (userId: string | undefined) {
+
+// }

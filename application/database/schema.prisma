@@ -9,9 +9,9 @@ generator client {
   previewFeatures = ["multiSchema"]
 }
 
-generator fabrica {
+generator fabbrica {
   provider     = "prisma-fabbrica"
-  output       = "/generated/factories"
+  output       = "./generated/factories"
   nonTranspile = true
 }
 
