@@ -4,9 +4,7 @@ const SEED_USERS_SQL = `
 WITH credentials(mail, pass, firstName, lastName) AS (
   -- PUT YOUR EMAILS AND PASSWORDS HERE.
   SELECT * FROM (VALUES
-    ('graham.orrell+superadmin@northlink.digital', 'test1234', 'Graham', 'Orrell'),
-    ('graham.orrell+admin@northlink.digital', 'test1234', 'Graham', 'Orrell'),
-    ('claudiu.bardan@northlink.digital', 'test1234', 'Claudiu', 'Bardan')
+    ('bardanclaudiu29@gmail.com', 'password', 'Claudiu', 'Bardan')
     ) AS users
 ),
 create_user AS (

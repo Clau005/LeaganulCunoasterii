@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import { Database } from '@/types/supabase';
-
-import {
-  Session,
-  SupabaseClient,
-  createBrowserSupabaseClient,
-  createClientComponentClient
-} from '@supabase/auth-helpers-nextjs';
-import { useRouter } from 'next/navigation';
-import { createContext, useContext, useEffect, useState } from 'react';
-
-export type SupabaseSchemaType = string & keyof Database;
-export type MaybeSession = Session | null;
+import { createContext, useContext, useEffect, useState } from "react";
+import { createClientComponentClient, createServerComponentClient, Session, SupabaseClient, User } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/navigation";
+import { Database } from "@/types/supabase";
+import { cookies } from "next/headers";
+import { UserDetails } from "@/app-types";
 
 type SupabaseClientMap = {
   [schemaName: string]: SupabaseClient<Database, any, any>;
 };
 
+
+type MaybeSession =  Session | null
+
+export type SupabaseSchemaType = string & keyof Database;
+
 type SupabaseContext = {
-  supabaseClients: SupabaseClientMap;
-  session: MaybeSession;
-};
+  supabaseClients: SupabaseClientMap
+  session : MaybeSession
+}
+
+
 
 const DATABASE_SCHEMAS: SupabaseSchemaType[] = (process.env.NEXT_PUBLIC_DATABASE_SCHEMAS ?? 'public').split(
   ','
@@ -30,7 +30,8 @@ const DATABASE_SCHEMAS: SupabaseSchemaType[] = (process.env.NEXT_PUBLIC_DATABASE
 // @ts-ignore
 export const Context = createContext<SupabaseContext>();
 
-export default function SupabaseProvider({ children, session }: { children: React.ReactNode; session: MaybeSession }) {
+export  const SupabaseProvider = ({ children, session }: { children: React.ReactNode; session : MaybeSession }) => {
+
   const router = useRouter();
   const [supabaseClients] = useState<SupabaseClientMap>(() => {
     let supabaseClients: SupabaseClientMap = {};
@@ -58,15 +59,16 @@ export default function SupabaseProvider({ children, session }: { children: Reac
   }, [router, supabaseClients]);
 
   return (
-    <Context.Provider value={{ supabaseClients, session }}>
+    <Context.Provider value={{supabaseClients, session}}>
       <>{children}</>
     </Context.Provider>
-  );
+  )
 }
+
+export default SupabaseProvider
 
 export const useSupabase = <T extends string & keyof Database>(schema: SupabaseSchemaType = 'public') => {
   const context = useContext<SupabaseContext>(Context);
-
   if (context === undefined) {
     throw new Error('useSupabase must be used inside SupabaseProvider');
   }

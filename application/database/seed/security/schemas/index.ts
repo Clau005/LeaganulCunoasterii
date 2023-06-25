@@ -13,7 +13,7 @@ export const grantSchemaPermissions = async (prismaClient: PrismaClient) => {
 
             const grandCommands = [
                 `GRANT USAGE ON SCHEMA ${schema} TO anon, authenticated, service_role`,
-                `GRANT ALL ON ALL TABLE IN SCHEMA ${schema} TO anon, authenticated, service_role`,
+                `GRANT ALL ON ALL TABLES IN SCHEMA ${schema} TO anon, authenticated, service_role`,
                 `GRANT ALL ON ALL ROUTINES IN SCHEMA ${schema} TO anon, authenticated, service_role`,
                 `GRANT ALL ON ALL SEQUENCES IN SCHEMA ${schema} TO anon, authenticated, service_role`
             ];

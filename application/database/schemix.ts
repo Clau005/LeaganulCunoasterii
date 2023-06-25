@@ -26,9 +26,9 @@ createSchema({
             previewFeatures: ['multiSchema']
         },
         {
-            name: 'fabrica',
+            name: 'fabbrica',
             provider: 'prisma-fabbrica',
-            output: '/generated/factories',
+            output: './generated/factories',
             nonTranspile: true
         },
     ]
