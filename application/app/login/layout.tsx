@@ -1,19 +1,12 @@
-
+"use client"
 import '../globals.css'
 
-
-export const revalidate = 0;
-
-
-export default async function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default async function LoginLayout(
+  { children }: 
+  { children: React.ReactNode }) {
   return (
       <>
         {children}
       </>
-
   )
 }

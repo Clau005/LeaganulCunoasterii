@@ -5,7 +5,7 @@ import { useSupabase } from "@/providers/SupabaseProvider";
 
 export default function Home() {
 const {supabase, session} = useSupabase<'public'>()
-// const [user, setUser] = useState()
+
 
 const user = session?.user?.user_metadata
 console.log(session, 'admin/(front-end)/page.tsx')

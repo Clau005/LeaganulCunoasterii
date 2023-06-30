@@ -1,6 +1,6 @@
 'use client'
 
-import { AdminSignIn } from "@/components/auth/AuthComponents/AdminSign"
+import { AdminSignIn } from "@/components/AuthComponents/AdminSign"
 import { useSessionContext, useSupabaseClient } from "@supabase/auth-helpers-react";
 
 export default function LoginAdmin() {
